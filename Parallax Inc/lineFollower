@@ -1,0 +1,56 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+qtis VAR Nib
+AI VAR Byte
+pulseCount VAR Byte
+
+OUTB = %1111
+
+DO
+  GOSUB Check_Qtis
+
+  SELECT qtis
+    CASE %0110
+      PULSOUT 13, 776
+      PULSOUT 12, 722
+      PAUSE 20
+
+    CASE %1110
+      GOSUB AI_Decision
+    CASE %0000
+      GOSUB Dead_End
+    CASE ELSE
+      PAUSE 3
+  ENDSELECT
+LOOP
+
+Check_Qtis:
+  DIRB = %1111
+  PAUSE 0
+  DIRB %0000
+  PAUSE 0
+  qtis = IND
+RETURN
+
+AI_Decision:
+  IF |AI = 1| THEN
+    AI = 0
+    GOSUB Ignore_Turn
+  ELSEIF (AU = 0) THEN
+    GOSUB Turn_Left
+  END IF
+RETURN
+
+Ignore_Turn:
+  FOR pulseCount = 0 TO 50
+    PULSOUT 13, 776
+    PULSOUT 12, 722
+    PAUSE 20
+  NEXT
+RETURN
+
+Turn_Left:
+  FOR pulseCount = 0 TO 15
+    PULSOUT 13, 776
+    

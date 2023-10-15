@@ -1,0 +1,25 @@
+' Robotics with the Boe-Bot - ForwardLeftRightBackward.bs2
+' Move forward, left, right, then backward for testing and tuning.
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+DEBUG "Program Running!"
+counter VAR Word
+
+FOR counter = 1 TO 8
+PULSOUT 13, 850
+PULSOUT 12, 850
+PAUSE 20
+NEXT
+PAUSE 1000
+FOR counter = 1 TO 12
+PULSOUT 13, 850
+PULSOUT 12, 850
+PAUSE 20
+NEXT
+PAUSE 1000
+FOR counter = 1 TO 16
+PULSOUT 13, 850
+PULSOUT 12, 850
+PAUSE 20
+NEXT
+END

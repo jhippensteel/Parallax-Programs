@@ -1,0 +1,8 @@
+' {$STAMP BS2}
+
+counter VAR Word
+FOR counter = 1 TO 5900
+  PULSOUT 13, 769
+  PULSOUT 12, 735
+  PAUSE 20
+NEXT
